@@ -17,8 +17,8 @@
             <div class="container">
                 <div class="top-bar-content">
                     <div class="quick-links">
-                        <a href="#"><i class="fas fa-user-graduate"></i> <span class="tc">學者門戶</span><span class="en">Scholar Portal</span></a>
-                        <a href="#"><i class="fas fa-book"></i> <span class="tc">圖書館</span><span class="en">Library</span></a>
+                        <a href="#"><i class="fas fa-user-graduate"></i> <span class="tc">學者門戶</span><span class="sc">学者门户</span><span class="en">Scholar Portal</span></a>
+                        <a href="#"><i class="fas fa-book"></i> <span class="tc">圖書館</span><span class="sc">图书馆</span><span class="en">Library</span></a>
                     </div>
                     <div class="controls-container">
                         <div class="search-box">
@@ -27,6 +27,7 @@
                         </div>
                         <div class="language-switch">
                             <button id="lang-tc-btn" class="active">繁</button>
+                            <button id="lang-sc-btn">簡</button>
                             <button id="lang-en-btn">EN</button>
                         </div>
                     </div>
@@ -42,18 +43,18 @@
                         <a href="#">
                             <img src="img/logo/香港高等教育研究所logo（透明底）.jpg" alt="香港高等教育研究所 Logo">
                             <div class="logo-text">
-                                <h1><span class="tc">香港高等教育研究所</span><span class="en">Hong Kong Institute of Higher Education Research</span></h1>
+                                <h1><span class="tc">香港高等教育研究所</span><span class="sc">香港高等教育研究所</span><span class="en">Hong Kong Institute of Higher Education Research</span></h1>
                             </div>
                         </a>
                     </div>
                     <nav class="main-nav">
                         <ul>
-                            <li><a href="#"><span class="tc">首頁</span><span class="en">Home</span></a></li>
-                            <li><a href="#"><span class="tc">關於我們</span><span class="en">About Us</span></a></li>
-                            <li><a href="#"><span class="tc">學術期刊</span><span class="en">Journals</span></a></li>
-                            <li><a href="scientific-editing.html"><span class="tc">學術服務</span><span class="en">Academic Services</span></a></li>
-                            <li><a href="#"><span class="tc">我們的學者</span><span class="en">Scholars</span></a></li>
-                             <li><a href="#"><span class="tc">聯繫我們</span><span class="en">Contact</span></a></li>
+                            <li><a href="#"><span class="tc">首頁</span><span class="sc">首页</span><span class="en">Home</span></a></li>
+                            <li><a href="#"><span class="tc">關於我們</span><span class="sc">关于我们</span><span class="en">About Us</span></a></li>
+                            <li><a href="#"><span class="tc">學術期刊</span><span class="sc">学术期刊</span><span class="en">Journals</span></a></li>
+                            <li><a href="scientific-editing.html"><span class="tc">學術服務</span><span class="sc">学术服务</span><span class="en">Academic Services</span></a></li>
+                            <li><a href="#"><span class="tc">我們的學者</span><span class="sc">我们的学者</span><span class="en">Scholars</span></a></li>
+                             <li><a href="#"><span class="tc">聯繫我們</span><span class="sc">联系我们</span><span class="en">Contact</span></a></li>
                         </ul>
                     </nav>
                     <button class="mobile-menu-toggle" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
@@ -65,13 +66,13 @@
         <section class="banner">
             <div class="banner-content">
                 <h2 class="banner-title">
-                    <span class="tc">思想、探索、影響力</span><span class="en">Thought, Discovery, Impact</span>
+                    <span class="tc">思想、探索、影響力</span><span class="sc">思想、探索、影响力</span><span class="en">Thought, Discovery, Impact</span>
                 </h2>
                 <p class="banner-subtitle">
-                    <span class="tc">致力於前沿學術研究，推動社會知識進步</span><span class="en">Dedicated to pioneering research and the advancement of societal knowledge</span>
+                    <span class="tc">致力於前沿學術研究，推動社會知識進步</span><span class="sc">致力于前沿学术研究，推动社会知识进步</span><span class="en">Dedicated to pioneering research and the advancement of societal knowledge</span>
                 </p>
                 <a href="#" class="btn btn-primary">
-                    <span class="tc">了解更多</span><span class="en">Learn More</span> <i class="fas fa-arrow-right"></i>
+                    <span class="tc">了解更多</span><span class="sc">了解更多</span><span class="en">Learn More</span> <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </section>
@@ -81,7 +82,7 @@
             <div class="container">
                 <!-- Core Research Areas Section -->
                 <section class="info-section text-center">
-                    <h2 class="section-title"><span class="tc">核心研究領域</span><span class="en">Core Research Areas</span></h2>
+                    <h2 class="section-title"><span class="tc">核心研究領域</span><span class="sc">核心研究领域</span><span class="en">Core Research Areas</span></h2>
                     <div class="info-grid">
                         <div class="info-item">
                             <div class="info-icon"><i class="fas fa-landmark"></i></div>
@@ -212,5 +213,64 @@
     <a href="#" class="scroll-to-top" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></a>
 
     <script src="js/script.js"></script>
+    <script>
+        // 三语言切换功能
+        function initLanguageSwitch() {
+            const tcBtn = document.getElementById('lang-tc-btn');
+            const scBtn = document.getElementById('lang-sc-btn');
+            const enBtn = document.getElementById('lang-en-btn');
+            const body = document.body;
+            
+            // 检测用户地理位置并设置默认语言
+            function detectLanguage() {
+                if (navigator.language) {
+                    const lang = navigator.language.toLowerCase();
+                    if (lang.includes('zh-cn') || lang.includes('zh-sg')) {
+                        return 'sc'; // 简体中文
+                    } else if (lang.includes('zh')) {
+                        return 'tc'; // 繁体中文（默认）
+                    } else {
+                        return 'en'; // 英文
+                    }
+                }
+                return 'tc'; // 默认繁体中文
+            }
+            
+            // 设置语言
+            function setLanguage(lang) {
+                body.className = body.className.replace(/lang-\w+/, '') + ' lang-' + lang;
+                
+                // 更新按钮状态
+                [tcBtn, scBtn, enBtn].forEach(btn => btn.classList.remove('active'));
+                document.getElementById('lang-' + lang + '-btn').classList.add('active');
+                
+                // 保存到localStorage
+                localStorage.setItem('preferredLanguage', lang);
+                
+                // 更新搜索框placeholder
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    const placeholders = {
+                        'tc': '搜尋...',
+                        'sc': '搜索...',
+                        'en': 'Search...'
+                    };
+                    searchInput.placeholder = placeholders[lang];
+                }
+            }
+            
+            // 初始化语言
+            const savedLang = localStorage.getItem('preferredLanguage') || detectLanguage();
+            setLanguage(savedLang);
+            
+            // 绑定点击事件
+            tcBtn.addEventListener('click', () => setLanguage('tc'));
+            scBtn.addEventListener('click', () => setLanguage('sc'));
+            enBtn.addEventListener('click', () => setLanguage('en'));
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initLanguageSwitch);
+    </script>
 </body>
 </html> 
