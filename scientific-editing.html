@@ -306,6 +306,40 @@
             font-size: 14px;
         }
 
+        /* 语言切换样式 */
+        .language-switch {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .language-switch button {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            background: white;
+            color: #666;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .language-switch button.active {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+        
+        .language-switch button:hover:not(.active) {
+            background: #f0f0f0;
+        }
+        
+        /* 语言显示控制 */
+        .tc, .sc, .en { display: none; }
+        .lang-tc .tc { display: inline; }
+        .lang-sc .sc { display: inline; }
+        .lang-en .en { display: inline; }
+
         /* 信息框 */
         .info-box {
             background: #e7f3ff;
@@ -320,13 +354,22 @@
         }
     </style>
 </head>
-<body>
+<body class="lang-sc">
     <!-- 顶部导航 -->
     <div class="top-nav">
         <div class="container">
-            <a href="#">中文</a>
-            <a href="#">联系我们</a>
-            <a href="#">帮助</a>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <a href="#"><span class="tc">繁體中文</span><span class="sc">简体中文</span><span class="en">Chinese</span></a>
+                    <a href="#"><span class="tc">聯繫我們</span><span class="sc">联系我们</span><span class="en">Contact Us</span></a>
+                    <a href="#"><span class="tc">幫助</span><span class="sc">帮助</span><span class="en">Help</span></a>
+                </div>
+                <div class="language-switch">
+                    <button id="lang-tc-btn" class="active">繁</button>
+                    <button id="lang-sc-btn">簡</button>
+                    <button id="lang-en-btn">EN</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -335,18 +378,18 @@
         <div class="container">
             <div class="logo">
                 <img src="img/logo/高图出版管理logo（蓝色透明底）.png" alt="高图出版管理 Logo" style="height: 40px; margin-right: 10px; vertical-align: middle;">
-                HEPM 高图出版管理
+                <span class="tc">HEPM 高圖出版管理</span><span class="sc">HEPM 高图出版管理</span><span class="en">HEPM Publishing</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="#">首页</a></li>
-                <li><a href="#">期刊发表</a></li>
-                <li><a href="#">论文润色</a></li>
-                <li><a href="#">学术指导</a></li>
-                <li><a href="#">会议合作</a></li>
-                <li><a href="#">关于我们</a></li>
+                <li><a href="#"><span class="tc">首頁</span><span class="sc">首页</span><span class="en">Home</span></a></li>
+                <li><a href="#"><span class="tc">期刊發表</span><span class="sc">期刊发表</span><span class="en">Journal Publishing</span></a></li>
+                <li><a href="#"><span class="tc">論文潤色</span><span class="sc">论文润色</span><span class="en">Paper Editing</span></a></li>
+                <li><a href="#"><span class="tc">學術指導</span><span class="sc">学术指导</span><span class="en">Academic Guidance</span></a></li>
+                <li><a href="#"><span class="tc">會議合作</span><span class="sc">会议合作</span><span class="en">Conference Cooperation</span></a></li>
+                <li><a href="#"><span class="tc">關於我們</span><span class="sc">关于我们</span><span class="en">About Us</span></a></li>
             </ul>
             <div class="search-box">
-                <input type="text" placeholder="搜索...">
+                <input type="text" id="searchInput" placeholder="搜索...">
                 <button>🔍</button>
             </div>
         </div>
@@ -355,8 +398,8 @@
     <!-- 英雄区域 -->
     <section class="hero">
         <div class="container">
-            <h1>高图出版管理</h1>
-            <p class="subtitle">联结全球教育智慧 驱动学术实践革新</p>
+            <h1><span class="tc">高圖出版管理</span><span class="sc">高图出版管理</span><span class="en">HEPM Publishing</span></h1>
+            <p class="subtitle"><span class="tc">聯結全球教育智慧 驅動學術實踐革新</span><span class="sc">联结全球教育智慧 驱动学术实践革新</span><span class="en">Connecting Global Educational Wisdom, Driving Academic Innovation</span></p>
             <div class="springer-nature-logo">HEPM</div>
         </div>
     </section>
@@ -542,5 +585,64 @@
             </div>
         </div>
     </footer>
+    <script>
+        // 三语言切换功能
+        function initLanguageSwitch() {
+            const tcBtn = document.getElementById('lang-tc-btn');
+            const scBtn = document.getElementById('lang-sc-btn');
+            const enBtn = document.getElementById('lang-en-btn');
+            const body = document.body;
+            
+            // 检测用户地理位置并设置默认语言
+            function detectLanguage() {
+                if (navigator.language) {
+                    const lang = navigator.language.toLowerCase();
+                    if (lang.includes('zh-cn') || lang.includes('zh-sg')) {
+                        return 'sc'; // 简体中文
+                    } else if (lang.includes('zh')) {
+                        return 'tc'; // 繁体中文
+                    } else {
+                        return 'en'; // 英文
+                    }
+                }
+                return 'tc'; // 默认繁体中文
+            }
+            
+            // 设置语言
+            function setLanguage(lang) {
+                body.className = body.className.replace(/lang-\w+/, '') + ' lang-' + lang;
+                
+                // 更新按钮状态
+                [tcBtn, scBtn, enBtn].forEach(btn => btn.classList.remove('active'));
+                document.getElementById('lang-' + lang + '-btn').classList.add('active');
+                
+                // 保存到localStorage
+                localStorage.setItem('preferredLanguage', lang);
+                
+                // 更新搜索框placeholder
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) {
+                    const placeholders = {
+                        'tc': '搜尋...',
+                        'sc': '搜索...',
+                        'en': 'Search...'
+                    };
+                    searchInput.placeholder = placeholders[lang];
+                }
+            }
+            
+            // 初始化语言
+            const savedLang = localStorage.getItem('preferredLanguage') || detectLanguage();
+            setLanguage(savedLang);
+            
+            // 绑定点击事件
+            tcBtn.addEventListener('click', () => setLanguage('tc'));
+            scBtn.addEventListener('click', () => setLanguage('sc'));
+            enBtn.addEventListener('click', () => setLanguage('en'));
+        }
+        
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', initLanguageSwitch);
+    </script>
 </body>
 </html>
