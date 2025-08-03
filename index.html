@@ -9,6 +9,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Noto+Sans+TC:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 语言显示控制 */
+        .tc, .sc, .en { display: none; }
+        .lang-tc .tc { display: inline; }
+        .lang-sc .sc { display: inline; }
+        .lang-en .en { display: inline; }
+        
+        /* 语言切换按钮样式 */
+        .language-switch button {
+            padding: 4px 8px;
+            border: 1px solid #ddd;
+            background: white;
+            color: #666;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            margin: 0 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .language-switch button.active {
+            background: #0066cc;
+            color: white;
+            border-color: #0066cc;
+        }
+        
+        .language-switch button:hover:not(.active) {
+            background: #f0f0f0;
+        }
+    </style>
 </head>
 <body class="lang-tc">
     <div class="site-wrapper">
@@ -86,85 +116,85 @@
                     <div class="info-grid">
                         <div class="info-item">
                             <div class="info-icon"><i class="fas fa-landmark"></i></div>
-                            <h3 class="info-title"><span class="tc">人文科學</span><span class="en">Humanities</span></h3>
-                            <p class="info-text"><span class="tc">探索歷史、哲學與藝術，解讀人類文明的深度。</span><span class="en">Exploring history, philosophy, and arts to understand human civilization.</span></p>
+                            <h3 class="info-title"><span class="tc">人文科學</span><span class="sc">人文科学</span><span class="en">Humanities</span></h3>
+                            <p class="info-text"><span class="tc">探索歷史、哲學與藝術，解讀人類文明的深度。</span><span class="sc">探索历史、哲学与艺术，解读人类文明的深度。</span><span class="en">Exploring history, philosophy, and arts to understand human civilization.</span></p>
                         </div>
                         <div class="info-item">
                             <div class="info-icon"><i class="fas fa-users"></i></div>
-                            <h3 class="info-title"><span class="tc">社會科學</span><span class="en">Social Sciences</span></h3>
-                            <p class="info-text"><span class="tc">分析社會結構、經濟動態與公共政策的相互作用。</span><span class="en">Analyzing social structures, economic dynamics, and public policy.</span></p>
+                            <h3 class="info-title"><span class="tc">社會科學</span><span class="sc">社会科学</span><span class="en">Social Sciences</span></h3>
+                            <p class="info-text"><span class="tc">分析社會結構、經濟動態與公共政策的相互作用。</span><span class="sc">分析社会结构、经济动态与公共政策的相互作用。</span><span class="en">Analyzing social structures, economic dynamics, and public policy.</span></p>
                         </div>
                         <div class="info-item">
                             <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
-                            <h3 class="info-title"><span class="tc">高等教育研究</span><span class="en">Higher Education Studies</span></h3>
-                            <p class="info-text"><span class="tc">專注於教育創新、學術發展及全球高等教育趨勢。</span><span class="en">Focusing on educational innovation, academic development, and global trends.</span></p>
+                            <h3 class="info-title"><span class="tc">高等教育研究</span><span class="sc">高等教育研究</span><span class="en">Higher Education Studies</span></h3>
+                            <p class="info-text"><span class="tc">專注於教育創新、學術發展及全球高等教育趨勢。</span><span class="sc">专注于教育创新、学术发展及全球高等教育趋势。</span><span class="en">Focusing on educational innovation, academic development, and global trends.</span></p>
                         </div>
                          <div class="info-item">
                             <div class="info-icon"><i class="fas fa-globe"></i></div>
-                            <h3 class="info-title"><span class="tc">國際關係</span><span class="en">International Relations</span></h3>
-                            <p class="info-text"><span class="tc">研究全球治理、地緣政治與跨文化交流的複雜性。</span><span class="en">Investigating global governance, geopolitics, and cross-cultural communication.</span></p>
+                            <h3 class="info-title"><span class="tc">國際關係</span><span class="sc">国际关系</span><span class="en">International Relations</span></h3>
+                            <p class="info-text"><span class="tc">研究全球治理、地緣政治與跨文化交流的複雜性。</span><span class="sc">研究全球治理、地缘政治与跨文化交流的复杂性。</span><span class="en">Investigating global governance, geopolitics, and cross-cultural communication.</span></p>
                         </div>
                     </div>
                 </section>
                 
                 <!-- Academic Journals Section -->
                 <section class="journals-section text-center">
-                    <h2 class="section-title"><span class="tc">主辦學術期刊</span><span class="en">Academic Journals</span></h2>
+                    <h2 class="section-title"><span class="tc">主辦學術期刊</span><span class="sc">主办学术期刊</span><span class="en">Academic Journals</span></h2>
                     <div class="journals-grid">
                         <div class="journal-item">
                             <img src="img/journal1.png" alt="Journal Cover 1">
                             <div class="journal-info">
-                                <h3 class="journal-title"><span class="tc">《亞洲社會科學評論》</span><span class="en">Asia Social Science Review</span></h3>
+                                <h3 class="journal-title"><span class="tc">《亞洲社會科學評論》</span><span class="sc">《亚洲社会科学评论》</span><span class="en">Asia Social Science Review</span></h3>
                                 <p class="journal-meta">ISSN: 1234-5678</p>
-                                <a href="#" class="journal-link"><span class="tc">在線閱讀</span><span class="en">Read Online</span> <i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="journal-link"><span class="tc">在線閱讀</span><span class="sc">在线阅读</span><span class="en">Read Online</span> <i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                         <div class="journal-item">
                             <img src="img/journal2.png" alt="Journal Cover 2">
                             <div class="journal-info">
-                                <h3 class="journal-title"><span class="tc">《全球教育視野》</span><span class="en">Global Education Perspectives</span></h3>
+                                <h3 class="journal-title"><span class="tc">《全球教育視野》</span><span class="sc">《全球教育视野》</span><span class="en">Global Education Perspectives</span></h3>
                                 <p class="journal-meta">ISSN: 2345-6789</p>
-                                <a href="#" class="journal-link"><span class="tc">在線閱讀</span><span class="en">Read Online</span> <i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="journal-link"><span class="tc">在線閱讀</span><span class="sc">在线阅读</span><span class="en">Read Online</span> <i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                         <div class="journal-item">
                             <img src="img/journal3.png" alt="Journal Cover 3">
                             <div class="journal-info">
-                                <h3 class="journal-title"><span class="tc">《現代東方哲學》</span><span class="en">Modern Eastern Philosophy</span></h3>
+                                <h3 class="journal-title"><span class="tc">《現代東方哲學》</span><span class="sc">《现代东方哲学》</span><span class="en">Modern Eastern Philosophy</span></h3>
                                 <p class="journal-meta">ISSN: 3456-7890</p>
-                                <a href="#" class="journal-link"><span class="tc">在線閱讀</span><span class="en">Read Online</span> <i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" class="journal-link"><span class="tc">在線閱讀</span><span class="sc">在线阅读</span><span class="en">Read Online</span> <i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-secondary"><span class="tc">查看所有期刊</span><span class="en">All Journals</span></a>
+                    <a href="#" class="btn btn-secondary"><span class="tc">查看所有期刊</span><span class="sc">查看所有期刊</span><span class="en">All Journals</span></a>
                 </section>
                 
                 <!-- Our Scholars Section -->
                 <section class="scholars-section text-center">
-                    <h2 class="section-title"><span class="tc">我們的學者</span><span class="en">Our Scholars</span></h2>
+                    <h2 class="section-title"><span class="tc">我們的學者</span><span class="sc">我们的学者</span><span class="en">Our Scholars</span></h2>
                     <div class="scholars-grid">
                         <div class="scholar-item">
                             <img src="img/scholar1.jpg" alt="Scholar 1">
-                            <h3 class="scholar-name"><span class="tc">陳嘉欣 教授</span><span class="en">Prof. Jia-Xin Chen</span></h3>
-                            <p class="scholar-title"><span class="tc">社會學系主任</span><span class="en">Head of Sociology</span></p>
+                            <h3 class="scholar-name"><span class="tc">陳嘉欣 教授</span><span class="sc">陈嘉欣 教授</span><span class="en">Prof. Jia-Xin Chen</span></h3>
+                            <p class="scholar-title"><span class="tc">社會學系主任</span><span class="sc">社会学系主任</span><span class="en">Head of Sociology</span></p>
                         </div>
                         <div class="scholar-item">
                             <img src="img/scholar2.jpg" alt="Scholar 2">
-                            <h3 class="scholar-name"><span class="tc">李偉倫 博士</span><span class="en">Dr. Wei-Lun Li</span></h3>
-                            <p class="scholar-title"><span class="tc">歷史學首席研究員</span><span class="en">Principal Investigator, History</span></p>
+                            <h3 class="scholar-name"><span class="tc">李偉倫 博士</span><span class="sc">李伟伦 博士</span><span class="en">Dr. Wei-Lun Li</span></h3>
+                            <p class="scholar-title"><span class="tc">歷史學首席研究員</span><span class="sc">历史学首席研究员</span><span class="en">Principal Investigator, History</span></p>
                         </div>
                         <div class="scholar-item">
                             <img src="img/scholar3.jpg" alt="Scholar 3">
-                            <h3 class="scholar-name"><span class="tc">Anna Petrova 教授</span><span class="en">Prof. Anna Petrova</span></h3>
-                            <p class="scholar-title"><span class="tc">比較文學訪問學者</span><span class="en">Visiting Scholar, Comparative Literature</span></p>
+                            <h3 class="scholar-name"><span class="tc">Anna Petrova 教授</span><span class="sc">Anna Petrova 教授</span><span class="en">Prof. Anna Petrova</span></h3>
+                            <p class="scholar-title"><span class="tc">比較文學訪問學者</span><span class="sc">比较文学访问学者</span><span class="en">Visiting Scholar, Comparative Literature</span></p>
                         </div>
                         <div class="scholar-item">
                             <img src="img/scholar4.jpg" alt="Scholar 4">
-                            <h3 class="scholar-name"><span class="tc">王浩宇 院士</span><span class="en">Academician Hao-Yu Wang</span></h3>
-                            <p class="scholar-title"><span class="tc">經濟學榮譽教授</span><span class="en">Honorary Professor, Economics</span></p>
+                            <h3 class="scholar-name"><span class="tc">王浩宇 院士</span><span class="sc">王浩宇 院士</span><span class="en">Academician Hao-Yu Wang</span></h3>
+                            <p class="scholar-title"><span class="tc">經濟學榮譽教授</span><span class="sc">经济学荣誉教授</span><span class="en">Honorary Professor, Economics</span></p>
                         </div>
                     </div>
-                    <a href="#" class="btn btn-secondary"><span class="tc">認識所有學者</span><span class="en">Meet All Scholars</span></a>
+                    <a href="#" class="btn btn-secondary"><span class="tc">認識所有學者</span><span class="sc">认识所有学者</span><span class="en">Meet All Scholars</span></a>
                 </section>
             </div>
         </main>
@@ -176,27 +206,27 @@
                     <div class="footer-main">
                         <div class="footer-logo">
                             <img src="img/logo/香港高等教育研究所logo（透明底）.jpg" alt="香港高等教育研究所 Logo">
-                            <h3 class="footer-title"><span class="tc">香港高等教育研究所</span><span class="en">Hong Kong Institute of Higher Education Research</span></h3>
+                            <h3 class="footer-title"><span class="tc">香港高等教育研究所</span><span class="sc">香港高等教育研究所</span><span class="en">Hong Kong Institute of Higher Education Research</span></h3>
                         </div>
                         <p class="footer-about">
-                            <span class="tc">致力於推動學術卓越與知識創新，為社會發展提供智力支持。</span>
+                            <span class="tc">致力於推動學術卓越與知識創新，為社會發展提供智力支持。</span><span class="sc">致力于推动学术卓越与知识创新，为社会发展提供智力支持。</span>
                             <span class="en">Committed to promoting academic excellence and knowledge innovation, providing intellectual support for social development.</span>
                         </p>
                     </div>
                     <div class="footer-links">
-                        <h4><span class="tc">快速連結</span><span class="en">Quick Links</span></h4>
+                        <h4><span class="tc">快速連結</span><span class="sc">快速连结</span><span class="en">Quick Links</span></h4>
                         <ul>
-                            <li><a href="#"><span class="tc">研究項目</span><span class="en">Research Projects</span></a></li>
-                            <li><a href="#"><span class="tc">出版刊物</span><span class="en">Publications</span></a></li>
-                            <li><a href="#"><span class="tc">最新活動</span><span class="en">Events</span></a></li>
-                            <li><a href="#"><span class="tc">加入我們</span><span class="en">Join Us</span></a></li>
-                            <li><a href="#"><span class="tc">網站地圖</span><span class="en">Sitemap</span></a></li>
+                            <li><a href="#"><span class="tc">研究項目</span><span class="sc">研究项目</span><span class="en">Research Projects</span></a></li>
+                            <li><a href="#"><span class="tc">出版刊物</span><span class="sc">出版刊物</span><span class="en">Publications</span></a></li>
+                            <li><a href="#"><span class="tc">最新活動</span><span class="sc">最新活动</span><span class="en">Events</span></a></li>
+                            <li><a href="#"><span class="tc">加入我們</span><span class="sc">加入我们</span><span class="en">Join Us</span></a></li>
+                            <li><a href="#"><span class="tc">網站地圖</span><span class="sc">网站地图</span><span class="en">Sitemap</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-contact">
-                        <h4><span class="tc">聯繫方式</span><span class="en">Contact</span></h4>
+                        <h4><span class="tc">聯繫方式</span><span class="sc">联系方式</span><span class="en">Contact</span></h4>
                         <ul>
-                            <li><i class="fas fa-map-marker-alt"></i> <span class="tc">香港新界葵涌大連排道36-40號貴盛大廈一期2樓B53室</span><span class="en">Unit B53, 2/F, Kwai Shing Building Phase 1, 36-40 Tai Lin Pai Road, Kwai Chung, N.T.</span></li>
+                            <li><i class="fas fa-map-marker-alt"></i> <span class="tc">香港新界葵涌大連排道36-40號貴盛大廈一期2樓B53室</span><span class="sc">香港新界葵涌大连排道36-40号贵盛大厦一期2楼B53室</span><span class="en">Unit B53, 2/F, Kwai Shing Building Phase 1, 36-40 Tai Lin Pai Road, Kwai Chung, N.T.</span></li>
                             <li><i class="fas fa-envelope"></i> info@hkiher.ac.cn</li>
                         </ul>
                     </div>
@@ -204,7 +234,7 @@
             </div>
             <div class="footer-bottom">
                  <div class="container">
-                    <p>&copy; 2024 <span class="tc">香港高等教育研究所</span><span class="en">Hong Kong Institute of Higher Education Research</span>. <span class="tc">版權所有。</span><span class="en">All Rights Reserved.</span> | <span class="tc">香港政府注冊登記號78248781</span><span class="en">Hong Kong Government Registration No. 78248781</span></p>
+                    <p>&copy; 2024 <span class="tc">香港高等教育研究所</span><span class="sc">香港高等教育研究所</span><span class="en">Hong Kong Institute of Higher Education Research</span>. <span class="tc">版權所有。</span><span class="sc">版权所有。</span><span class="en">All Rights Reserved.</span> | <span class="tc">香港政府注冊登記號78248781</span><span class="sc">香港政府注册登记号78248781</span><span class="en">Hong Kong Government Registration No. 78248781</span></p>
                 </div>
             </div>
         </footer>
