@@ -9,36 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Noto+Sans+TC:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* 语言显示控制 */
-        .tc, .sc, .en { display: none; }
-        .lang-tc .tc { display: inline; }
-        .lang-sc .sc { display: inline; }
-        .lang-en .en { display: inline; }
-        
-        /* 语言切换按钮样式 */
-        .language-switch button {
-            padding: 4px 8px;
-            border: 1px solid #ddd;
-            background: white;
-            color: #666;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 12px;
-            margin: 0 2px;
-            transition: all 0.3s ease;
-        }
-        
-        .language-switch button.active {
-            background: #0066cc;
-            color: white;
-            border-color: #0066cc;
-        }
-        
-        .language-switch button:hover:not(.active) {
-            background: #f0f0f0;
-        }
-    </style>
 </head>
 <body class="lang-tc">
     <div class="site-wrapper">
@@ -57,7 +27,7 @@
                         </div>
                         <div class="language-switch">
                             <button id="lang-tc-btn" class="active">繁</button>
-                            <button id="lang-sc-btn">簡</button>
+                            <button id="lang-sc-btn">简</button>
                             <button id="lang-en-btn">EN</button>
                         </div>
                     </div>
@@ -71,7 +41,7 @@
                 <div class="header-content">
                     <div class="logo">
                         <a href="#">
-                            <img src="img/logo/香港高等教育研究所logo（透明底）.jpg" alt="香港高等教育研究所 Logo">
+                            <img src="img/logo/香港高等教育研究所logo（透明底）.png" alt="香港高等教育研究所 Logo">
                             <div class="logo-text">
                                 <h1><span class="tc">香港高等教育研究所</span><span class="sc">香港高等教育研究所</span><span class="en">Hong Kong Institute of Higher Education Research</span></h1>
                             </div>
@@ -80,9 +50,8 @@
                     <nav class="main-nav">
                         <ul>
                             <li><a href="#"><span class="tc">首頁</span><span class="sc">首页</span><span class="en">Home</span></a></li>
-                            <li><a href="#"><span class="tc">關於我們</span><span class="sc">关于我们</span><span class="en">About Us</span></a></li>
-                            <li><a href="#"><span class="tc">學術期刊</span><span class="sc">学术期刊</span><span class="en">Journals</span></a></li>
-                            <li><a href="scientific-editing.html"><span class="tc">學術服務</span><span class="sc">学术服务</span><span class="en">Academic Services</span></a></li>
+                            <li><a href="about.html"><span class="tc">關於我們</span><span class="sc">关于我们</span><span class="en">About Us</span></a></li>
+                            <li><a href="scientific-editing.html"><span class="tc">學術期刊</span><span class="sc">学术期刊</span><span class="en">Journals</span></a></li>
                             <li><a href="#"><span class="tc">我們的學者</span><span class="sc">我们的学者</span><span class="en">Scholars</span></a></li>
                              <li><a href="#"><span class="tc">聯繫我們</span><span class="sc">联系我们</span><span class="en">Contact</span></a></li>
                         </ul>
@@ -92,18 +61,31 @@
             </div>
         </header>
 
-        <!-- Banner Section -->
-        <section class="banner">
-            <div class="banner-content">
-                <h2 class="banner-title">
-                    <span class="tc">思想、探索、影響力</span><span class="sc">思想、探索、影响力</span><span class="en">Thought, Discovery, Impact</span>
-                </h2>
-                <p class="banner-subtitle">
-                    <span class="tc">致力於前沿學術研究，推動社會知識進步</span><span class="sc">致力于前沿学术研究，推动社会知识进步</span><span class="en">Dedicated to pioneering research and the advancement of societal knowledge</span>
-                </p>
-                <a href="#" class="btn btn-primary">
-                    <span class="tc">了解更多</span><span class="sc">了解更多</span><span class="en">Learn More</span> <i class="fas fa-arrow-right"></i>
-                </a>
+        <!-- Hero Slider -->
+        <section class="hero-slider" aria-label="Hero">
+            <div class="slide active" style="--slide-bg: url('img/banner_bg.png')">
+                <div class="banner-content">
+                    <h2 class="banner-title">
+                        <span class="tc">融通學科界限·啟迪未來新知</span><span class="sc">融通学科界限·启迪未来新知</span>
+                        <span class="en">Transcending Boundaries, Unveiling New Knowledge.</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="slide" style="--slide-bg: url('img/banner_bg.png')">
+                <div class="banner-content">
+                    <h2 class="banner-title">
+                        <span class="tc">以人文之光·點亮時代之心</span><span class="sc">以人文之光·点亮时代之心</span>
+                        <span class="en">Humanities Illuminated: Guiding the Spirit of Our Time.</span>
+                    </h2>
+                </div>
+            </div>
+            <div class="slide" style="--slide-bg: url('img/banner_bg.png')">
+                <div class="banner-content">
+                    <h2 class="banner-title">
+                        <span class="tc">思想無疆·智引變革</span><span class="sc">思想无疆·智引变革</span>
+                        <span class="en">Borderless Minds, Wisdom-Driven Transformation.</span>
+                    </h2>
+                </div>
             </div>
         </section>
 
@@ -136,37 +118,57 @@
                         </div>
                     </div>
                 </section>
-                
+                 
                 <!-- Academic Journals Section -->
                 <section class="journals-section text-center">
                     <h2 class="section-title"><span class="tc">主辦學術期刊</span><span class="sc">主办学术期刊</span><span class="en">Academic Journals</span></h2>
                     <div class="journals-grid">
                         <div class="journal-item">
-                            <img src="img/journal1.png" alt="Journal Cover 1">
+                            <div class="journal-cover">
+                                <img src="img/子期刊封面/跨学科创新与融合研究__2025-07-20+14_18_48(1).jpg" alt="《跨学科创新与融合研究》封面">
+                            </div>
                             <div class="journal-info">
-                                <h3 class="journal-title"><span class="tc">《亞洲社會科學評論》</span><span class="sc">《亚洲社会科学评论》</span><span class="en">Asia Social Science Review</span></h3>
-                                <p class="journal-meta">ISSN: 1234-5678</p>
-                                <a href="#" class="journal-link"><span class="tc">在線閱讀</span><span class="sc">在线阅读</span><span class="en">Read Online</span> <i class="fas fa-external-link-alt"></i></a>
+                                <h3 class="journal-title">
+                                    <span class="tc">《跨學科創新與融合研究》</span><span class="sc">《跨学科创新与融合研究》</span>
+                                    <span class="en">Journal of Transdisciplinary Innovation and Integration (JTII)</span>
+                                </h3>
+                                <p class="journal-meta">
+                                    <span class="tc">印刷 ISSN：3104-6991｜在線 ISSN：3104-7009｜雙月刊（擬調整為月刊）</span><span class="sc">印刷 ISSN：3104-6991｜在线 ISSN：3104-7009｜双月刊（拟调整为月刊）</span>
+                                    <span class="en">Print ISSN: 3104-6991 | Online ISSN: 3104-7009 | Bimonthly (target: Monthly)</span>
+                                </p>
+                                <p class="journal-meta">
+                                    <span class="tc">收錄計劃：知網、維普、谷歌學術等</span><span class="sc">收录计划：知网、维普、谷歌学术等</span>
+                                    <span class="en">Indexing plan: CNKI, VIP, Google Scholar, etc.</span>
+                                </p>
+                                <a href="https://j.hkiher.ac.cn/index.php/JTII" class="journal-link" target="_blank" rel="noopener">
+                                    <span class="tc">前往期刊</span><span class="sc">前往期刊</span><span class="en">Visit Journal</span> <i class="fas fa-external-link-alt"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="journal-item">
-                            <img src="img/journal2.png" alt="Journal Cover 2">
+                            <div class="journal-cover">
+                                <img src="img/子期刊封面/人工智能应用与跨学科创新__2025-07-20+14_19_15(1).jpg" alt="《应用式人工智能与跨学科创新》封面">
+                            </div>
                             <div class="journal-info">
-                                <h3 class="journal-title"><span class="tc">《全球教育視野》</span><span class="sc">《全球教育视野》</span><span class="en">Global Education Perspectives</span></h3>
-                                <p class="journal-meta">ISSN: 2345-6789</p>
-                                <a href="#" class="journal-link"><span class="tc">在線閱讀</span><span class="sc">在线阅读</span><span class="en">Read Online</span> <i class="fas fa-external-link-alt"></i></a>
+                                <h3 class="journal-title">
+                                    <span class="tc">《應用式人工智能與跨學科創新》</span><span class="sc">《应用式人工智能与跨学科创新》</span>
+                                    <span class="en">Journal of Applied AI and Interdisciplinary Innovations (JAAI-II)</span>
+                                </h3>
+                                <p class="journal-meta">
+                                    <span class="tc">印刷 ISSN：3104-7017｜在線 ISSN：3104-7025｜季刊</span><span class="sc">印刷 ISSN：3104-7017｜在线 ISSN：3104-7025｜季刊</span>
+                                    <span class="en">Print ISSN: 3104-7017 | Online ISSN: 3104-7025 | Quarterly</span>
+                                </p>
+                                <p class="journal-meta">
+                                    <span class="tc">收錄計劃：SCOPUS、知網、維普、谷歌學術等，衝擊 ESCI/SCI</span><span class="sc">收录计划：SCOPUS、知网、维普、谷歌学术等，冲击 ESCI/SCI</span>
+                                    <span class="en">Indexing plan: SCOPUS, CNKI, VIP, Google Scholar; targeting ESCI/SCI</span>
+                                </p>
+                                <a href="https://j.hkiher.ac.cn/index.php/JAAI-II" class="journal-link" target="_blank" rel="noopener">
+                                    <span class="tc">前往期刊</span><span class="sc">前往期刊</span><span class="en">Visit Journal</span> <i class="fas fa-external-link-alt"></i>
+                                </a>
                             </div>
                         </div>
-                        <div class="journal-item">
-                            <img src="img/journal3.png" alt="Journal Cover 3">
-                            <div class="journal-info">
-                                <h3 class="journal-title"><span class="tc">《現代東方哲學》</span><span class="sc">《现代东方哲学》</span><span class="en">Modern Eastern Philosophy</span></h3>
-                                <p class="journal-meta">ISSN: 3456-7890</p>
-                                <a href="#" class="journal-link"><span class="tc">在線閱讀</span><span class="sc">在线阅读</span><span class="en">Read Online</span> <i class="fas fa-external-link-alt"></i></a>
-                            </div>
-                        </div>
+
                     </div>
-                    <a href="#" class="btn btn-secondary"><span class="tc">查看所有期刊</span><span class="sc">查看所有期刊</span><span class="en">All Journals</span></a>
                 </section>
                 
                 <!-- Our Scholars Section -->
@@ -175,22 +177,22 @@
                     <div class="scholars-grid">
                         <div class="scholar-item">
                             <img src="img/scholar1.jpg" alt="Scholar 1">
-                            <h3 class="scholar-name"><span class="tc">陳嘉欣 教授</span><span class="sc">陈嘉欣 教授</span><span class="en">Prof. Jia-Xin Chen</span></h3>
+                            <h3 class="scholar-name"><span class="tc">陳嘉欣 教授</span><span class="en">Prof. Jia-Xin Chen</span></h3>
                             <p class="scholar-title"><span class="tc">社會學系主任</span><span class="sc">社会学系主任</span><span class="en">Head of Sociology</span></p>
                         </div>
                         <div class="scholar-item">
                             <img src="img/scholar2.jpg" alt="Scholar 2">
-                            <h3 class="scholar-name"><span class="tc">李偉倫 博士</span><span class="sc">李伟伦 博士</span><span class="en">Dr. Wei-Lun Li</span></h3>
+                            <h3 class="scholar-name"><span class="tc">李偉倫 博士</span><span class="en">Dr. Wei-Lun Li</span></h3>
                             <p class="scholar-title"><span class="tc">歷史學首席研究員</span><span class="sc">历史学首席研究员</span><span class="en">Principal Investigator, History</span></p>
                         </div>
                         <div class="scholar-item">
                             <img src="img/scholar3.jpg" alt="Scholar 3">
-                            <h3 class="scholar-name"><span class="tc">Anna Petrova 教授</span><span class="sc">Anna Petrova 教授</span><span class="en">Prof. Anna Petrova</span></h3>
+                            <h3 class="scholar-name"><span class="tc">Anna Petrova 教授</span><span class="en">Prof. Anna Petrova</span></h3>
                             <p class="scholar-title"><span class="tc">比較文學訪問學者</span><span class="sc">比较文学访问学者</span><span class="en">Visiting Scholar, Comparative Literature</span></p>
                         </div>
                         <div class="scholar-item">
                             <img src="img/scholar4.jpg" alt="Scholar 4">
-                            <h3 class="scholar-name"><span class="tc">王浩宇 院士</span><span class="sc">王浩宇 院士</span><span class="en">Academician Hao-Yu Wang</span></h3>
+                            <h3 class="scholar-name"><span class="tc">王浩宇 院士</span><span class="en">Academician Hao-Yu Wang</span></h3>
                             <p class="scholar-title"><span class="tc">經濟學榮譽教授</span><span class="sc">经济学荣誉教授</span><span class="en">Honorary Professor, Economics</span></p>
                         </div>
                     </div>
@@ -205,7 +207,7 @@
                 <div class="footer-content">
                     <div class="footer-main">
                         <div class="footer-logo">
-                            <img src="img/logo/香港高等教育研究所logo（透明底）.jpg" alt="香港高等教育研究所 Logo">
+                            <img src="img/logo/香港高等教育研究所logo（透明底）.png" alt="香港高等教育研究所 Logo">
                             <h3 class="footer-title"><span class="tc">香港高等教育研究所</span><span class="sc">香港高等教育研究所</span><span class="en">Hong Kong Institute of Higher Education Research</span></h3>
                         </div>
                         <p class="footer-about">
@@ -214,7 +216,7 @@
                         </p>
                     </div>
                     <div class="footer-links">
-                        <h4><span class="tc">快速連結</span><span class="sc">快速连结</span><span class="en">Quick Links</span></h4>
+                        <h4><span class="tc">快速連結</span><span class="sc">快速链接</span><span class="en">Quick Links</span></h4>
                         <ul>
                             <li><a href="#"><span class="tc">研究項目</span><span class="sc">研究项目</span><span class="en">Research Projects</span></a></li>
                             <li><a href="#"><span class="tc">出版刊物</span><span class="sc">出版刊物</span><span class="en">Publications</span></a></li>
@@ -229,6 +231,21 @@
                             <li><i class="fas fa-map-marker-alt"></i> <span class="tc">香港新界葵涌大連排道36-40號貴盛大廈一期2樓B53室</span><span class="sc">香港新界葵涌大连排道36-40号贵盛大厦一期2楼B53室</span><span class="en">Unit B53, 2/F, Kwai Shing Building Phase 1, 36-40 Tai Lin Pai Road, Kwai Chung, N.T.</span></li>
                             <li><i class="fas fa-envelope"></i> info@hkiher.ac.cn</li>
                         </ul>
+                         <h4 style="margin-top:16px;"><span class="tc">關注我們</span><span class="sc">关注我们</span><span class="en">Follow Us</span></h4>
+                         <div class="contact-qr-list">
+                             <div class="contact-qr-item">
+                                 <img src="img/微信联系方式/image1.jpg" alt="企微 聯繫 二維碼">
+                                 <div class="label"><span class="tc">企微</span><span class="sc">企微</span><span class="en">WeCom</span></div>
+                             </div>
+                             <div class="contact-qr-item">
+                                 <img src="img/微信联系方式/image2.jpg" alt="小紅書 二維碼">
+                                 <div class="label"><span class="tc">小紅書</span><span class="sc">小红书</span><span class="en">RED</span></div>
+                             </div>
+                             <div class="contact-qr-item">
+                                 <img src="img/微信联系方式/image.jpg" alt="微信公眾號 二維碼">
+                                 <div class="label"><span class="tc">公眾號</span><span class="sc">公众号</span><span class="en">WeChat Official</span></div>
+                             </div>
+                         </div>
                     </div>
                 </div>
             </div>
@@ -243,64 +260,5 @@
     <a href="#" class="scroll-to-top" aria-label="Scroll to top"><i class="fas fa-arrow-up"></i></a>
 
     <script src="js/script.js"></script>
-    <script>
-        // 三语言切换功能
-        function initLanguageSwitch() {
-            const tcBtn = document.getElementById('lang-tc-btn');
-            const scBtn = document.getElementById('lang-sc-btn');
-            const enBtn = document.getElementById('lang-en-btn');
-            const body = document.body;
-            
-            // 检测用户地理位置并设置默认语言
-            function detectLanguage() {
-                if (navigator.language) {
-                    const lang = navigator.language.toLowerCase();
-                    if (lang.includes('zh-cn') || lang.includes('zh-sg')) {
-                        return 'sc'; // 简体中文
-                    } else if (lang.includes('zh')) {
-                        return 'tc'; // 繁体中文（默认）
-                    } else {
-                        return 'en'; // 英文
-                    }
-                }
-                return 'tc'; // 默认繁体中文
-            }
-            
-            // 设置语言
-            function setLanguage(lang) {
-                body.className = body.className.replace(/lang-\w+/, '') + ' lang-' + lang;
-                
-                // 更新按钮状态
-                [tcBtn, scBtn, enBtn].forEach(btn => btn.classList.remove('active'));
-                document.getElementById('lang-' + lang + '-btn').classList.add('active');
-                
-                // 保存到localStorage
-                localStorage.setItem('preferredLanguage', lang);
-                
-                // 更新搜索框placeholder
-                const searchInput = document.getElementById('searchInput');
-                if (searchInput) {
-                    const placeholders = {
-                        'tc': '搜尋...',
-                        'sc': '搜索...',
-                        'en': 'Search...'
-                    };
-                    searchInput.placeholder = placeholders[lang];
-                }
-            }
-            
-            // 初始化语言
-            const savedLang = localStorage.getItem('preferredLanguage') || detectLanguage();
-            setLanguage(savedLang);
-            
-            // 绑定点击事件
-            tcBtn.addEventListener('click', () => setLanguage('tc'));
-            scBtn.addEventListener('click', () => setLanguage('sc'));
-            enBtn.addEventListener('click', () => setLanguage('en'));
-        }
-        
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', initLanguageSwitch);
-    </script>
 </body>
 </html> 

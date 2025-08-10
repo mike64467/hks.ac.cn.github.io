@@ -4,34 +4,42 @@ document.addEventListener('DOMContentLoaded', function() {
     const body = document.body;
     const langTCBtn = document.getElementById('lang-tc-btn');
     const langENBtn = document.getElementById('lang-en-btn');
+    const langSCBtn = document.getElementById('lang-sc-btn');
     const searchInput = document.getElementById('searchInput');
 
     function setLanguage(lang) {
-        if (!body || !langTCBtn || !langENBtn) return;
+        if (!body) return;
 
         if (lang === 'en') {
             body.classList.remove('lang-tc');
+            body.classList.remove('lang-sc');
             body.classList.add('lang-en');
-            langENBtn.classList.add('active');
-            langTCBtn.classList.remove('active');
-            if (searchInput) {
-                searchInput.placeholder = "Search...";
-            }
-        } else {
+            langENBtn && langENBtn.classList.add('active');
+            langTCBtn && langTCBtn.classList.remove('active');
+            langSCBtn && langSCBtn.classList.remove('active');
+            if (searchInput) searchInput.placeholder = "Search...";
+        } else if (lang === 'sc') {
+            body.classList.remove('lang-tc');
             body.classList.remove('lang-en');
+            body.classList.add('lang-sc');
+            langSCBtn && langSCBtn.classList.add('active');
+            langTCBtn && langTCBtn.classList.remove('active');
+            langENBtn && langENBtn.classList.remove('active');
+            if (searchInput) searchInput.placeholder = "搜索...";
+        } else { // default tc
+            body.classList.remove('lang-en');
+            body.classList.remove('lang-sc');
             body.classList.add('lang-tc');
-            langTCBtn.classList.add('active');
-            langENBtn.classList.remove('active');
-            if (searchInput) {
-                searchInput.placeholder = "搜尋...";
-            }
+            langTCBtn && langTCBtn.classList.add('active');
+            langENBtn && langENBtn.classList.remove('active');
+            langSCBtn && langSCBtn.classList.remove('active');
+            if (searchInput) searchInput.placeholder = "搜尋...";
         }
     }
 
-    if (langTCBtn && langENBtn) {
-        langTCBtn.addEventListener('click', () => setLanguage('tc'));
-        langENBtn.addEventListener('click', () => setLanguage('en'));
-    }
+    if (langTCBtn) langTCBtn.addEventListener('click', () => setLanguage('tc'));
+    if (langENBtn) langENBtn.addEventListener('click', () => setLanguage('en'));
+    if (langSCBtn) langSCBtn.addEventListener('click', () => setLanguage('sc'));
 
     // --- Mobile Menu Toggle ---
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -76,10 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         scrollToTopBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
@@ -96,9 +101,22 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, { threshold: 0.1 });
 
-        animatedElements.forEach(el => {
-            observer.observe(el);
-        });
+        animatedElements.forEach(el => { observer.observe(el); });
+    }
+
+    // --- Hero slider ---
+    const slides = document.querySelectorAll('.hero-slider .slide');
+    if (slides.length > 1) {
+        let currentSlideIndex = 0;
+        const switchIntervalMs = 6000;
+
+        function goToSlide(index) {
+            slides.forEach((s, i) => { i === index ? s.classList.add('active') : s.classList.remove('active'); });
+            currentSlideIndex = index;
+        }
+        function goToNextSlide() { goToSlide((currentSlideIndex + 1) % slides.length); }
+        goToSlide(0);
+        setInterval(goToNextSlide, switchIntervalMs);
     }
 
 });

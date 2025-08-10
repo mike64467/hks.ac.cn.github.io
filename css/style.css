@@ -4,6 +4,8 @@ Style for Hong Kong Institute of Higher Education Research
 =================================================================
 */
 
+html { scroll-behavior: smooth; }
+
 /* --- Variables & Global Reset --- */
 :root {
     --primary-color: #1a3c5f; /* Deep, professional navy blue */
@@ -107,7 +109,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --- Language & Utility --- */
-.lang-tc .en, .lang-en .tc { display: none; }
+.lang-tc .en, .lang-tc .sc { display: none; }
+.lang-en .tc, .lang-en .sc { display: none; }
+.lang-sc .en { display: none; }
+.lang-sc .tc { display: none; }
+.lang-sc .show-tc { display: inline; }
 .text-center { text-align: center; }
 
 /* Scroll-in animations */
@@ -272,7 +278,7 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
 }
 
-/* --- Banner Section --- */
+/* --- Banner / Hero Slider Section --- */
 .banner {
     background-image: linear-gradient(rgba(26, 60, 95, 0.7), rgba(26, 60, 95, 0.7)), url('../img/banner_bg.png');
     background-size: cover;
@@ -280,6 +286,40 @@ h1, h2, h3, h4, h5, h6 {
     color: #fff;
     text-align: center;
     padding: 140px 20px;
+}
+
+/* Hero slider wrapper */
+.hero-slider {
+    position: relative;
+    height: 70vh;
+    min-height: 420px;
+    overflow: hidden;
+}
+
+.hero-slider .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    background-image: linear-gradient(rgba(26, 60, 95, 0.55), rgba(26, 60, 95, 0.55)), var(--slide-bg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transform: scale(1.02);
+    transition: opacity 0.8s ease, transform 1.6s ease;
+}
+
+.hero-slider .slide.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 1;
+}
+
+.hero-slider .banner-content {
+    padding: 0 20px;
 }
 .banner-title {
     font-size: 3.5rem;
@@ -409,40 +449,71 @@ h1, h2, h3, h4, h5, h6 {
 }
 .journals-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
+    justify-items: center;
 }
+
+.journals-grid .journal-item:first-child {
+    grid-column: 2;
+}
+
+.journals-grid .journal-item:last-child {
+    grid-column: 3;
+}
+
+/* Compact journal card like reference design */
 .journal-item {
-    background-color: var(--background-light);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-sm);
-    transition: all 0.3s ease;
-    overflow: hidden;
+    background: transparent;
+    border-radius: 8px;
+    text-align: center;
 }
-.journal-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-}
-.journal-item img {
+.journal-item:hover { transform: translateY(-2px); }
+
+.journal-cover {
     width: 100%;
-    height: 250px;
-    object-fit: cover;
+    aspect-ratio: 3 / 4; /* unify cover size */
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    background: #fff;
 }
+.journal-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.journal-cover.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #f6f8fb, #e9eef6);
+    border: 2px dashed #d1d9e2;
+    box-shadow: none;
+}
+.journal-item.placeholder .journal-title,
+.journal-item.placeholder .journal-meta { opacity: 0.75; }
+.journal-item .placeholder-text { color: #7a8a9a; font-weight: 700; }
 .journal-info {
-    padding: 20px;
+    padding: 12px 8px 0;
 }
 .journal-title {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
+    font-size: 1.05rem;
+    margin: 10px 0 6px;
+    line-height: 1.4;
 }
 .journal-meta {
     font-size: 0.9rem;
     color: var(--text-light);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 .journal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
 }
 .journal-link .fas { font-size: 0.8rem; }
@@ -491,8 +562,12 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 50px;
 }
 .footer-logo img {
-    height: 50px;
-    margin-bottom: 15px;
+    height: 72px;
+    margin-bottom: 12px;
+    object-fit: contain;
+    background: transparent;
+    mix-blend-mode: multiply; /* approximate transparent background on dark footer */
+    opacity: 0.96;
 }
 .footer-title {
     font-size: 1.3rem;
@@ -547,6 +622,29 @@ h1, h2, h3, h4, h5, h6 {
     color: rgba(255,255,255,0.7);
 }
 
+/* Contact QR list */
+.contact-qr-list {
+    display: grid;
+    grid-template-columns: repeat(3, 86px);
+    gap: 14px;
+    margin-top: 8px;
+}
+.contact-qr-item {
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+}
+.contact-qr-item img {
+    width: 86px;
+    height: 86px;
+    object-fit: cover;
+    border-radius: 6px;
+    background: #fff;
+}
+.contact-qr-item .label {
+    font-size: 12px;
+    margin-top: 6px;
+}
+
 /* --- Scroll To Top Button --- */
 .scroll-to-top {
     position: fixed;
@@ -580,13 +678,15 @@ h1, h2, h3, h4, h5, h6 {
 
 
 /* --- Responsive Design --- */
+@media (max-width: 1200px) {
+    .journals-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
 @media (max-width: 1024px) {
     .info-grid, .scholars-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .journals-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
+    .journals-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .news-container {
         grid-template-columns: 1fr;
     }
@@ -648,4 +748,24 @@ h1, h2, h3, h4, h5, h6 {
     .section-header-split { flex-direction: column; gap: 20px; }
     .scholars-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
     .footer-content { grid-template-columns: 1fr; gap: 40px; }
+    .contact-qr-list { grid-template-columns: repeat(3, 1fr); }
+    .footer-logo img { height: 56px; }
+}
+
+/* About Section */
+.about-section { scroll-margin-top: 90px; }
+.about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; align-items: start; }
+.about-heading { font-size: 1.6rem; margin-bottom: 12px; }
+.about-subtitle { font-size: 1.2rem; margin: 22px 0 10px; color: var(--primary-color); }
+.about-paragraph { color: var(--text-dark); margin-bottom: 12px; }
+.about-list { list-style: none; padding-left: 0; color: var(--text-dark); }
+.about-list li { margin-bottom: 10px; }
+.about-list.two-col { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px 24px; }
+.about-aside .about-card { background: var(--background-grey); border: 1px solid var(--border-color); border-radius: 10px; padding: 20px; box-shadow: var(--shadow-sm); position: sticky; top: 90px; }
+.about-note { color: var(--text-light); margin-bottom: 10px; }
+
+@media (max-width: 1024px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-aside .about-card { position: static; }
+  .about-list.two-col { grid-template-columns: 1fr; }
 }

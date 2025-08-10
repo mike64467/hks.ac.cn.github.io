@@ -1,356 +1,132 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>高图出版管理 - HEPM学术服务平台</title>
+    <title><span class="tc">高圖出版管理 - HEPM學術服務平台</span><span class="sc">高图出版管理 - HEPM学术服务平台</span><span class="en">HEPM - Academic Services</span></title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        html { scroll-behavior: smooth; }
 
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
+        /* Language toggle */
+        .lang-tc .en, .lang-tc .sc { display: none; }
+        .lang-en .tc, .lang-en .sc { display: none; }
+        .lang-sc .tc, .lang-sc .en { display: none; }
+        .language-switch { display: inline-flex; gap: 6px; margin-left: 10px; }
+        .language-switch button { border: 0; background: #e7f3ff; color: #0066cc; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-weight: 700; font-size: 12px; }
+        .language-switch button.active { background: #0066cc; color: #fff; }
 
         /* 顶部导航 */
-        .top-nav {
-            background: #f8f9fa;
-            padding: 8px 0;
-            font-size: 12px;
-        }
-
-        .top-nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            text-align: right;
-        }
-
-        .top-nav a {
-            color: #666;
-            text-decoration: none;
-            margin: 0 10px;
-        }
+        .top-nav { background: #f8f9fa; padding: 8px 0; font-size: 12px; }
+        .top-nav .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; text-align: right; }
+        .top-nav a { color: #666; text-decoration: none; margin: 0 10px; }
 
         /* 主导航 */
-        .main-nav {
-            background: white;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 15px 0;
-        }
-
-        .main-nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 18px;
-            font-weight: bold;
-            color: #0066cc;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-menu li {
-            margin: 0 20px;
-        }
-
-        .nav-menu a {
-            color: #333;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .search-box {
-            display: flex;
-            align-items: center;
-        }
-
-        .search-box input {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-right: 10px;
-        }
+        .main-nav { background: white; border-bottom: 1px solid #e0e0e0; padding: 15px 0; }
+        .main-nav .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 18px; font-weight: bold; color: #0066cc; display: flex; align-items: center; gap: 8px; }
+        .nav-menu { display: flex; list-style: none; }
+        .nav-menu li { margin: 0 20px; }
+        .nav-menu a { color: #333; text-decoration: none; font-size: 14px; }
+        .search-box { display: flex; align-items: center; }
+        .search-box input { padding: 8px 12px; border: 1px solid #ddd; border-radius: 4px; margin-right: 10px; }
 
         /* 英雄区域 */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23666" width="1200" height="400"/></svg>');
-            background-size: cover;
-            color: white;
-            padding: 80px 0;
-            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.50), rgba(0,0,0,0.50)), url('img/英雄区展示封面/banner_bg.png');
+            background-size: cover; background-position: center; color: white; height: 62vh; min-height: 420px; display: flex; align-items: center; text-align: center;
+            position: relative;
         }
-
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
+        /* 备用背景色，当图片无法加载时显示 */
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #0066cc, #004499);
+            z-index: -1;
         }
-
-        .hero .subtitle {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-
-        .springer-nature-logo {
-            background: #0066cc;
-            color: white;
-            padding: 10px 20px;
-            display: inline-block;
-            font-weight: bold;
-            margin-top: 20px;
-        }
+        .hero h1 { font-size: 36px; margin-bottom: 16px; }
+        .hero .subtitle { font-size: 18px; margin-bottom: 30px; }
+        .hero .cta-group { display: inline-flex; gap: 12px; }
+        .btn { cursor: pointer; transition: all .2s ease; }
+        .springer-nature-logo { background: #0066cc; color: white; padding: 10px 20px; display: inline-block; font-weight: bold; margin-top: 10px; }
+        .btn-primary:hover { filter: brightness(0.95); transform: translateY(-1px); }
+        .btn-secondary:hover { filter: brightness(1.05); transform: translateY(-1px); }
 
         /* 主要内容 */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .content-section {
-            padding: 40px 0;
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 40px;
-            margin-top: 30px;
-        }
-
-        .main-content h2 {
-            color: #0066cc;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
-
-        .main-content h3 {
-            color: #333;
-            font-size: 18px;
-            margin: 25px 0 15px 0;
-        }
-
-        .main-content p {
-            margin-bottom: 15px;
-            color: #666;
-        }
-
-        .main-content ul {
-            margin: 15px 0;
-            padding-left: 20px;
-        }
-
-        .main-content li {
-            margin-bottom: 8px;
-            color: #666;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .content-section { padding: 40px 0; }
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-top: 30px; }
+        .main-content h2 { color: #0066cc; font-size: 24px; margin-bottom: 20px; }
+        .main-content h3 { color: #333; font-size: 18px; margin: 25px 0 15px 0; }
+        .main-content p { margin-bottom: 15px; color: #666; }
+        .main-content ul { margin: 15px 0; padding-left: 20px; }
+        .main-content li { margin-bottom: 8px; color: #666; }
 
         /* 侧边栏 */
-        .sidebar {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 8px;
-        }
-
-        .sidebar h3 {
-            color: #0066cc;
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-
-        .sidebar p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .sidebar .btn {
-            background: #0066cc;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 4px;
-            display: inline-block;
-            margin: 10px 5px;
-            font-size: 14px;
-        }
+        .sidebar { background: #f8f9fa; padding: 30px; border-radius: 8px; position: sticky; top: 90px; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+        .sidebar h3 { color: #0066cc; font-size: 18px; margin-bottom: 15px; }
+        .sidebar p { font-size: 14px; color: #666; margin-bottom: 15px; }
+        .sidebar .btn { background: #0066cc; color: white; padding: 12px 22px; text-decoration: none; border-radius: 6px; display: inline-block; margin: 10px 5px; font-size: 14px; }
 
         /* 服务特色区域 */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin: 40px 0;
-        }
+        .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin: 40px 0; }
+        .service-item h3 { color: #0066cc; font-size: 20px; margin-bottom: 15px; }
 
-        .service-item h3 {
-            color: #0066cc;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
+        /* 信任与保障 */
+        .trust-section { background: #f8f9fa; padding: 40px 0; border-top: 1px solid #eef3f8; border-bottom: 1px solid #eef3f8; }
+        .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .trust-card { background: #fff; border: 1px solid #e6edf5; border-radius: 10px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .trust-card h3 { color: #0066cc; font-size: 18px; margin-bottom: 10px; }
+        .trust-card p { color: #555; font-size: 14px; }
 
         /* 期刊列表 */
-        .journal-list {
-            background: #f8f9fa;
-            padding: 40px 0;
-        }
+        .journal-list { background: #f8f9fa; padding: 40px 0; }
+        .journal-list h2 { text-align: center; color: #0066cc; margin-bottom: 30px; }
+        .journal-columns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .journal-columns ul { list-style: none; padding: 0; }
+        .journal-columns li { padding: 5px 0; font-size: 14px; color: #666; }
 
-        .journal-list h2 {
-            text-align: center;
-            color: #0066cc;
-            margin-bottom: 30px;
-        }
+        /* 图片展示 */
+        .visual-showcase { padding: 30px 0 10px; }
+        .visual-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .visual-grid img { width: 100%; height: 220px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
 
-        .journal-columns {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .journal-columns ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .journal-columns li {
-            padding: 5px 0;
-            font-size: 14px;
-            color: #666;
-        }
-
-        /* 关于部分 */
-        .about-section {
-            padding: 40px 0;
-            background: white;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-        }
+        /* 联系二维码 */
+        .contact-qr-list { display: grid; grid-template-columns: repeat(3, 86px); gap: 12px; margin-top: 10px; }
+        .contact-qr-item { text-align: center; }
+        .contact-qr-item img { width: 86px; height: 86px; object-fit: cover; border-radius: 6px; background: #fff; }
+        .contact-qr-item .label { font-size: 12px; margin-top: 6px; color: #666; }
 
         /* 页脚 */
-        .footer {
-            background: #333;
-            color: white;
-            padding: 40px 0 20px 0;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer h4 {
-            color: #0066cc;
-            margin-bottom: 15px;
-        }
-
-        .footer ul {
-            list-style: none;
-        }
-
-        .footer li {
-            margin-bottom: 8px;
-        }
-
-        .footer a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #555;
-            padding-top: 20px;
-            text-align: center;
-            color: #999;
-            font-size: 12px;
-        }
+        .footer { background: #333; color: white; padding: 40px 0 20px 0; }
+        .footer-content { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-bottom: 30px; }
+        .footer h4 { color: #0066cc; margin-bottom: 15px; }
+        .footer ul { list-style: none; }
+        .footer li { margin-bottom: 8px; }
+        .footer a { color: #ccc; text-decoration: none; font-size: 14px; }
+        .footer-bottom { border-top: 1px solid #555; padding-top: 20px; text-align: center; color: #999; font-size: 12px; }
 
         /* 按钮样式 */
-        .btn-primary {
-            background: #0066cc;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            margin: 10px 0;
-        }
-
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 4px;
-            display: inline-block;
-            font-size: 14px;
-        }
-
-        /* 语言切换样式 */
-        .language-switch {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .language-switch button {
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            background: white;
-            color: #666;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s ease;
-        }
-        
-        .language-switch button.active {
-            background: #0066cc;
-            color: white;
-            border-color: #0066cc;
-        }
-        
-        .language-switch button:hover:not(.active) {
-            background: #f0f0f0;
-        }
-        
-        /* 语言显示控制 */
-        .tc, .sc, .en { display: none; }
-        .lang-tc .tc { display: inline; }
-        .lang-sc .sc { display: inline; }
-        .lang-en .en { display: inline; }
+        .btn-primary { background: #0066cc; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 10px 0; }
+        .btn-secondary { background: #6c757d; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; display: inline-block; font-size: 14px; }
 
         /* 信息框 */
-        .info-box {
-            background: #e7f3ff;
-            border-left: 4px solid #0066cc;
-            padding: 20px;
-            margin: 20px 0;
-        }
+        .info-box { background: #e7f3ff; border-left: 4px solid #0066cc; padding: 20px; margin: 20px 0; }
+        .info-box p { margin: 0; color: #333; }
 
-        .info-box p {
-            margin: 0;
-            color: #333;
+        @media (max-width: 900px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .visual-grid { grid-template-columns: 1fr; }
+            .journal-columns { grid-template-columns: 1fr; }
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .footer-content { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -358,18 +134,14 @@
     <!-- 顶部导航 -->
     <div class="top-nav">
         <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <a href="#"><span class="tc">繁體中文</span><span class="sc">简体中文</span><span class="en">Chinese</span></a>
-                    <a href="#"><span class="tc">聯繫我們</span><span class="sc">联系我们</span><span class="en">Contact Us</span></a>
-                    <a href="#"><span class="tc">幫助</span><span class="sc">帮助</span><span class="en">Help</span></a>
-                </div>
-                <div class="language-switch">
-                    <button id="lang-tc-btn" class="active">繁</button>
-                    <button id="lang-sc-btn">簡</button>
-                    <button id="lang-en-btn">EN</button>
-                </div>
-            </div>
+            <a href="#"><span class="tc">中文</span><span class="sc">中文</span><span class="en">CN</span></a>
+            <a href="#contact"><span class="tc">聯繫我們</span><span class="sc">联系我们</span><span class="en">Contact</span></a>
+            <a href="#"><span class="tc">幫助</span><span class="sc">帮助</span><span class="en">Help</span></a>
+            <span class="language-switch">
+                <button id="lang-tc">繁</button>
+                <button id="lang-sc" class="active">简</button>
+                <button id="lang-en">EN</button>
+            </span>
         </div>
     </div>
 
@@ -377,19 +149,21 @@
     <nav class="main-nav">
         <div class="container">
             <div class="logo">
-                <img src="img/logo/高图出版管理logo（蓝色透明底）.png" alt="高图出版管理 Logo" style="height: 40px; margin-right: 10px; vertical-align: middle;">
-                <span class="tc">HEPM 高圖出版管理</span><span class="sc">HEPM 高图出版管理</span><span class="en">HEPM Publishing</span>
+                <img src="img/logo/高图出版管理logo（蓝色透明底）.png" alt="高圖出版管理 Logo" style="height: 72px; margin-right: 12px; vertical-align: middle;">
+                <span class="tc">HEPM 高圖出版管理</span>
+                <span class="sc">HEPM 高图出版管理</span>
+                <span class="en">HEPM Publishing Management</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="#"><span class="tc">首頁</span><span class="sc">首页</span><span class="en">Home</span></a></li>
-                <li><a href="#"><span class="tc">期刊發表</span><span class="sc">期刊发表</span><span class="en">Journal Publishing</span></a></li>
-                <li><a href="#"><span class="tc">論文潤色</span><span class="sc">论文润色</span><span class="en">Paper Editing</span></a></li>
-                <li><a href="#"><span class="tc">學術指導</span><span class="sc">学术指导</span><span class="en">Academic Guidance</span></a></li>
-                <li><a href="#"><span class="tc">會議合作</span><span class="sc">会议合作</span><span class="en">Conference Cooperation</span></a></li>
-                <li><a href="#"><span class="tc">關於我們</span><span class="sc">关于我们</span><span class="en">About Us</span></a></li>
+                <li><a href="#services"><span class="tc">期刊發表</span><span class="sc">期刊发表</span><span class="en">Publications</span></a></li>
+                <li><a href="#editing"><span class="tc">論文潤色</span><span class="sc">论文润色</span><span class="en">Editing</span></a></li>
+                <li><a href="#guidance"><span class="tc">學術指導</span><span class="sc">学术指导</span><span class="en">Coaching</span></a></li>
+                <li><a href="#conference"><span class="tc">會議合作</span><span class="sc">会议合作</span><span class="en">Conferences</span></a></li>
+                <li><a href="#contact"><span class="tc">關於我們</span><span class="sc">关于我们</span><span class="en">About</span></a></li>
             </ul>
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="搜索...">
+                <input type="text" placeholder="Search / 搜索...">
                 <button>🔍</button>
             </div>
         </div>
@@ -398,9 +172,28 @@
     <!-- 英雄区域 -->
     <section class="hero">
         <div class="container">
-            <h1><span class="tc">高圖出版管理</span><span class="sc">高图出版管理</span><span class="en">HEPM Publishing</span></h1>
-            <p class="subtitle"><span class="tc">聯結全球教育智慧 驅動學術實踐革新</span><span class="sc">联结全球教育智慧 驱动学术实践革新</span><span class="en">Connecting Global Educational Wisdom, Driving Academic Innovation</span></p>
-            <div class="springer-nature-logo">HEPM</div>
+            <h1><span class="tc">高圖出版管理</span><span class="sc">高图出版管理</span><span class="en">HEPM Publishing Management</span></h1>
+            <p class="subtitle"><span class="tc">聯結全球教育智慧 驅動學術實踐革新</span><span class="sc">联结全球教育智慧 驱动学术实践革新</span><span class="en">Connecting Global Education, Driving Academic Innovation</span></p>
+        </div>
+    </section>
+
+    <!-- 信任与保障 -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <h3><span class="tc">安全保障</span><span class="sc">安全保障</span><span class="en">Security</span></h3>
+                    <p><span class="tc">嚴格保護稿件與個人資料，簽署保密協議，數據全程加密存儲與傳輸。</span><span class="sc">严格保护稿件与个人资料，签署保密协议，数据全程加密存储与传输。</span><span class="en">Strict confidentiality with NDAs and encrypted storage/transmission.</span></p>
+                </div>
+                <div class="trust-card">
+                    <h3><span class="tc">質量保證</span><span class="sc">质量保证</span><span class="en">Quality</span></h3>
+                    <p><span class="tc">雙盲流程與多輪校對，資深學者把關；支持期刊格式與倫理合規審核。</span><span class="sc">双盲流程与多轮校对，资深学者把关；支持期刊格式与伦理合规审核。</span><span class="en">Double‑blind process, multi‑round review, compliance checks.</span></p>
+                </div>
+                <div class="trust-card">
+                    <h3><span class="tc">服務流程</span><span class="sc">服务流程</span><span class="en">Process</span></h3>
+                    <p><span class="tc">提交—評估—編修—溝通—交付，全程可追蹤；急件提供加急通道。</span><span class="sc">提交—评估—编修—沟通—交付，全程可追踪；急件提供加急通道。</span><span class="en">Submit → Assess → Edit → Communicate → Deliver; rush service available.</span></p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -409,72 +202,86 @@
         <div class="container">
             <div class="content-grid">
                 <div class="main-content">
-                    <h2>高图出版管理服务</h2>
-                    <p>高图出版管理（HEPM）作为香港高等教育研究所旗下的国际学术出版组织，深耕高等教育领域的跨学科研究与实践。聚焦人工智能应用、数字化转型、可持续健康科学、人文社会科学与艺术教育等核心热点议题，构建中英双语学术传播矩阵，打破地域与学科壁垒，推动理论成果向实践转化。</p>
+                    <h2 id="services"><span class="tc">高圖出版管理服務</span><span class="sc">高图出版管理服务</span><span class="en">HEPM Services</span></h2>
+                    <p><span class="tc">高圖出版管理（HEPM）作為香港高等教育研究所旗下的國際學術出版組織，深耕高等教育領域的跨學科研究與實踐，構建中英雙語學術傳播矩陣，推動理論成果向實踐轉化。</span><span class="sc">高图出版管理（HEPM）作为香港高等教育研究所旗下的国际学术出版组织，深耕高等教育领域的跨学科研究与实践，构建中英双语学术传播矩阵，推动理论成果向实践转化。</span><span class="en">HEPM, under HKIHER, focuses on interdisciplinary research and practice in higher education, building a bilingual dissemination matrix to translate research into practice.</span></p>
 
-                    <h3>中英文学术期刊高效发表</h3>
-                    <p>依托香港高等教育研究所等平台，HEPM建立了中英双语学术传播矩阵，联合多家著名高等教育出版机构，遵循DOAJ、COPE等国际通用标准，高效出版涵盖自然科学、人文与社会科学、医学、农学与交叉学科等领域的中英文学术期刊。支持Open Access开放获取，通过Google Scholar、中国知网、维普等主流检索进行传播。</p>
+                    <h3 id="editing"><span class="tc">中英文學術期刊高效發表</span><span class="sc">中英文學術期刊高效发表</span><span class="en">Efficient Journal Publications</span></h3>
+                    <p><span class="tc">遵循 DOAJ、COPE 等標準，高效出版涵蓋自然科學、人文與社會科學、醫學、農學與交叉學科等領域的中英文学術期刊。</span><span class="sc">遵循 DOAJ、COPE 等标准，高效出版涵盖自然科学、人文与社会科学、医学、农学与交叉学科等领域的中英文学术期刊。</span><span class="en">Compliant with DOAJ/COPE standards, we publish bilingual journals across sciences, humanities, medicine, agriculture and interdisciplinary areas.</span></p>
 
-                    <h3>学术论文润色修改与科学编辑</h3>
-                    <p>拥有来自中国、英国、美国等国家的博士、教授及行业专家构成的经验丰富的专业学术编辑团队，提供符合国内与国际规范的润色修改服务：</p>
+                    <h3><span class="tc">學術論文潤色修改與科學編輯</span><span class="sc">学术论文润色修改与科学编辑</span><span class="en">Academic Editing & Polishing</span></h3>
                     <ul>
-                        <li>多学科领域的专业意见和语法优化</li>
-                        <li>逻辑梳理及术语校准，提升学术写作水平</li>
-                        <li>科学编辑排版服务，满足不同期刊要求</li>
-                        <li>学术文章中英互译服务（至少两位专业学者审校）</li>
+                        <li><span class="tc">多學科領域專業意見與語法優化</span><span class="sc">多学科领域专业意见与语法优化</span><span class="en">Subject-expert feedback and language improvement</span></li>
+                        <li><span class="tc">邏輯梳理與術語校準</span><span class="sc">逻辑梳理与术语校准</span><span class="en">Logical structure and terminology calibration</span></li>
+                        <li><span class="tc">科學編輯排版服務</span><span class="sc">科学编辑排版服务</span><span class="en">Scientific editing and typesetting</span></li>
+                        <li><span class="tc">中英互譯與雙重審校</span><span class="sc">中英互译与双重审校</span><span class="en">CN-EN translation with dual review</span></li>
                     </ul>
 
-                    <h3>学术写作辅导及项目申报指导</h3>
-                    <p>针对富有学术潜力的学术新星与满怀热情的科研新锐，提供多学科领域尤其是新兴学科及交叉学科的全链条辅导：</p>
+                    <h3 id="guidance"><span class="tc">學術寫作輔導及項目申報指導</span><span class="sc">学术写作辅导及项目申报指导</span><span class="en">Writing Coaching & Grant Guidance</span></h3>
                     <ul>
-                        <li>从“选题-框架-论证”的系统性指导</li>
-                        <li>结合HEPM智库资源的专业分析</li>
-                        <li>国内国际核心课题基金项目申报解析</li>
-                        <li>顶刊论文写作逻辑指导，配备导师1v1辅导</li>
+                        <li><span class="tc">從選題—框架—論證的系統指導</span><span class="sc">从选题—框架—论证的系统指导</span><span class="en">End-to-end guidance from topic to argumentation</span></li>
+                        <li><span class="tc">結合智庫資源的專業分析</span><span class="sc">结合智库资源的专业分析</span><span class="en">Expert analysis powered by our think-tank</span></li>
+                        <li><span class="tc">核心課題基金項目申報解析</span><span class="sc">核心课题基金项目申报解析</span><span class="en">Grant proposal coaching</span></li>
+                        <li><span class="tc">頂刊論文寫作邏輯與 1v1 輔導</span><span class="sc">顶刊论文写作逻辑与 1v1 辅导</span><span class="en">Top-journal writing logic with 1-on-1 coaching</span></li>
                     </ul>
 
-                    <h3>学术会议合作及期刊代理</h3>
-                    <p>与国内外多所大学和教育机构联合举办学术会议，提供全方位的学术服务：</p>
+                    <h3 id="conference"><span class="tc">學術會議合作及期刊代理</span><span class="sc">学术会议合作及期刊代理</span><span class="en">Conference Collaboration & Journal Agency</span></h3>
                     <ul>
-                        <li>会议论文集合作出版及优秀成果遗选</li>
-                        <li>定制发行主题特刊，DOI注册服务</li>
-                        <li>CPCI/EI/IEEE/SCI/SSCI等高水平会议推荐</li>
-                        <li>代理全球30+中英文学术期刊，助力进入Scopus、知网等核心数据库</li>
+                        <li><span class="tc">會議論文集合作出版及優秀成果遴選</span><span class="sc">会议论文集合作出版及优秀成果遴选</span><span class="en">Proceedings co-publication and selection</span></li>
+                        <li><span class="tc">主題特刊與 DOI 註冊</span><span class="sc">主题特刊与 DOI 注册</span><span class="en">Special issues and DOI registration</span></li>
+                        <li><span class="tc">CPCI/EI/IEEE/SCI/SSCI 推薦</span><span class="sc">CPCI/EI/IEEE/SCI/SSCI 推荐</span><span class="en">Recommendations to CPCI/EI/IEEE/SCI/SSCI</span></li>
+                        <li><span class="tc">代理 30+ 中英文期刊</span><span class="sc">代理 30+ 中英文期刊</span><span class="en">Agency for 30+ journals</span></li>
                     </ul>
 
                     <div class="info-box">
-                        <p><strong>立即获取HEPM专业服务</strong> - 提交您的稿件，获得专业评估和全方位学术支持</p>
+                        <p><strong><span class="tc">立即獲取 HEPM 專業服務</span><span class="sc">立即获取 HEPM 专业服务</span><span class="en">Get HEPM Support Now</span></strong> — <span class="tc">提交您的稿件，獲得專業評估與全方位學術支持</span><span class="sc">提交您的稿件，获得专业评估与全方位学术支持</span><span class="en">Submit your manuscript for professional assessment and full support</span></p>
                     </div>
                 </div>
 
-                <div class="sidebar">
-                    <h3>服务优势</h3>
-                    <p>✓ 中英双语学术传播矩阵</p>
-                    <p>✓ 双盲快审+开放获取模式</p>
-                    <p>✓ 普惠性出版费用机制</p>
-                    <p>✓ 全球教育领域专业资源</p>
-                    
-                    <a href="#" class="btn">立即咨询</a>
-                    <a href="#" class="btn">获取报价</a>
+                <div class="sidebar" id="contact">
+                    <h3><span class="tc">服務優勢</span><span class="sc">服务优势</span><span class="en">Why HEPM</span></h3>
+                    <p>✓ <span class="tc">中英雙語學術傳播矩陣</span><span class="sc">中英双语学术传播矩阵</span><span class="en">Bilingual dissemination</span></p>
+                    <p>✓ <span class="tc">雙盲快審 + 開放獲取</span><span class="sc">双盲快审 + 开放获取</span><span class="en">Double-blind & Open Access</span></p>
+                    <p>✓ <span class="tc">普惠性出版費用機制</span><span class="sc">普惠性出版费用机制</span><span class="en">Inclusive pricing</span></p>
+                    <p>✓ <span class="tc">全球教育領域專業資源</span><span class="sc">全球教育领域专业资源</span><span class="en">Global expert network</span></p>
 
-                    <h3 style="margin-top: 30px;">相关服务</h3>
+                    <a href="#contact" class="btn btn-primary"><span class="tc">立即諮詢</span><span class="sc">立即咨询</span><span class="en">Consult Now</span></a>
+                    <a href="mailto:info@hkiher.ac.cn?subject=HEPM%20報價/Quote&body=請提供您的需求：學科/篇幅/期刊目標/截止期" class="btn btn-secondary"><span class="tc">獲取報價</span><span class="sc">获取报价</span><span class="en">Get Quote</span></a>
+
+                    <h3 style="margin-top: 30px;"><span class="tc">相關服務</span><span class="sc">相关服务</span><span class="en">Related Services</span></h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li style="margin: 10px 0;"><a href="#" style="color: #0066cc; text-decoration: none;">期刊发表代理</a></li>
-                        <li style="margin: 10px 0;"><a href="#" style="color: #0066cc; text-decoration: none;">教材专著出版</a></li>
-                        <li style="margin: 10px 0;"><a href="#" style="color: #0066cc; text-decoration: none;">ECR研究网络</a></li>
+                        <li style="margin: 10px 0;"><a href="#" style="color: #0066cc; text-decoration: none;"><span class="tc">期刊發表代理</span><span class="sc">期刊发表代理</span><span class="en">Journal Agency</span></a></li>
+                        <li style="margin: 10px 0;"><a href="#" style="color: #0066cc; text-decoration: none;"><span class="tc">教材專著出版</span><span class="sc">教材专著出版</span><span class="en">Textbook/Monograph</span></a></li>
+                        <li style="margin: 10px 0;"><a href="#" style="color: #0066cc; text-decoration: none;"><span class="tc">ECR 研究網絡</span><span class="sc">ECR 研究网络</span><span class="en">ECR Network</span></a></li>
                     </ul>
+
+                    <h3 style="margin-top: 24px;"><span class="tc">關注我們</span><span class="sc">关注我们</span><span class="en">Follow Us</span></h3>
+                    <div class="contact-qr-list">
+                        <div class="contact-qr-item">
+                            <img src="img/微信联系方式/image1.jpg" alt="WeCom QR">
+                            <div class="label"><span class="tc">企微</span><span class="sc">企微</span><span class="en">WeCom</span></div>
+                        </div>
+                        <div class="contact-qr-item">
+                            <img src="img/微信联系方式/image2.jpg" alt="RED QR">
+                            <div class="label"><span class="tc">小紅書</span><span class="sc">小红书</span><span class="en">RED</span></div>
+                        </div>
+                        <div class="contact-qr-item">
+                            <img src="img/微信联系方式/image.jpg" alt="WeChat Official QR">
+                            <div class="label"><span class="tc">公眾號</span><span class="sc">公众号</span><span class="en">WeChat</span></div>
+                        </div>
+                    </div>
+                    <p style="font-size:12px;color:#888;margin-top:6px;"><span class="tc">手機長按識別二維碼</span><span class="sc">手机长按识别二维码</span><span class="en">Long press to scan</span></p>
                 </div>
             </div>
 
-            <!-- 服务特色 -->
+            <!-- 服務特色 -->
             <div class="services-grid">
                 <div class="service-item">
-                    <h3>国际化专业团队</h3>
-                    <p>HEPM汇聚来自中国、英国、美国等国家的博士、教授及行业专家，构成经验丰富的专业学术编辑团队，深度理解各学科领域的研究特点和国际规范。</p>
+                    <h3><span class="tc">國際化專業團隊</span><span class="sc">国际化专业团队</span><span class="en">International Team</span></h3>
+                    <p><span class="tc">匯聚來自中國、英美等國的博士、教授及行業專家，深度理解各學科的研究特點與國際規範。</span><span class="sc">汇聚来自中国、英美等国的博士、教授及行业专家，深度理解各学科的研究特点与国际规范。</span><span class="en">Experts from CN/UK/US bring deep disciplinary expertise and publishing standards.</span></p>
                 </div>
                 <div class="service-item">
-                    <h3>包容多元学术社区</h3>
-                    <p>采用透明高效的审稿流程，举办多样化的学术论坛讲座研讨会等公益研究活动，保障学术研究的原创性与融合创新特质，鼓励并扶持具有学术潜力的新锐学者。</p>
+                    <h3><span class="tc">包容多元學術社群</span><span class="sc">包容多元学术社群</span><span class="en">Inclusive Community</span></h3>
+                    <p><span class="tc">透明高效的審稿流程與公益學術活動，鼓勵具有學術潛力的新銳學者。</span><span class="sc">透明高效的审稿流程与公益学术活动，鼓励具有学术潜力的新锐学者。</span><span class="en">Transparent review and public academic events to support emerging scholars.</span></p>
                 </div>
             </div>
         </div>
@@ -483,58 +290,38 @@
     <!-- 期刊列表 -->
     <section class="journal-list">
         <div class="container">
-            <h2>我们的合作领域与服务范围</h2>
+            <h2><span class="tc">我們的合作領域與服務範圍</span><span class="sc">我们的合作领域与服务范围</span><span class="en">Our Collaboration Areas & Services</span></h2>
             <div class="journal-columns">
                 <ul>
-                    <li>人工智能应用研究</li>
-                    <li>数字化教育转型</li>
-                    <li>高等教育管理</li>
-                    <li>教学创新与实践</li>
-                    <li>可持续健康科学</li>
-                    <li>教育心理学</li>
-                    <li>学科交叉研究</li>
-                    <li>课程与教学设计</li>
+                    <li><span class="tc">人工智慧應用研究</span><span class="sc">人工智能应用研究</span><span class="en">Applied AI Research</span></li>
+                    <li><span class="tc">數字化教育轉型</span><span class="sc">数字化教育转型</span><span class="en">Digital Education</span></li>
+                    <li><span class="tc">高等教育管理</span><span class="sc">高等教育管理</span><span class="en">Higher Ed Management</span></li>
+                    <li><span class="tc">教學創新與實踐</span><span class="sc">教学创新与实践</span><span class="en">Teaching Innovation</span></li>
+                    <li><span class="tc">可持續健康科學</span><span class="sc">可持续健康科学</span><span class="en">Sustainable Health</span></li>
+                    <li><span class="tc">教育心理學</span><span class="sc">教育心理学</span><span class="en">Educational Psychology</span></li>
+                    <li><span class="tc">學科交叉研究</span><span class="sc">学科交叉研究</span><span class="en">Interdisciplinary Research</span></li>
+                    <li><span class="tc">課程與教學設計</span><span class="sc">课程与教学设计</span><span class="en">Curriculum Design</span></li>
                 </ul>
                 <ul>
-                    <li>人文社会科学研究</li>
-                    <li>艺术教育与美育</li>
-                    <li>语言教育与研究</li>
-                    <li>比较教育学</li>
-                    <li>教育法学与政策</li>
-                    <li>教育经济学</li>
-                    <li>成人教育与终身学习</li>
-                    <li>职业教育研究</li>
+                    <li><span class="tc">人文社會科學研究</span><span class="sc">人文社会科学研究</span><span class="en">Humanities & Social Sciences</span></li>
+                    <li><span class="tc">藝術教育與美育</span><span class="sc">艺术教育与美育</span><span class="en">Arts Education</span></li>
+                    <li><span class="tc">語言教育與研究</span><span class="sc">语言教育与研究</span><span class="en">Language Education</span></li>
+                    <li><span class="tc">比較教育學</span><span class="sc">比较教育学</span><span class="en">Comparative Education</span></li>
+                    <li><span class="tc">教育法學與政策</span><span class="sc">教育法学与政策</span><span class="en">Education Law & Policy</span></li>
+                    <li><span class="tc">教育經濟學</span><span class="sc">教育经济学</span><span class="en">Education Economics</span></li>
+                    <li><span class="tc">成人教育與終身學習</span><span class="sc">成人教育与终身学习</span><span class="en">Adult & Lifelong Learning</span></li>
+                    <li><span class="tc">職業教育研究</span><span class="sc">职业教育研究</span><span class="en">Vocational Education</span></li>
                 </ul>
                 <ul>
-                    <li>教育技术与信息化</li>
-                    <li>在线教育与远程学习</li>
-                    <li>教师教育与发展</li>
-                    <li>学生发展与支持</li>
-                    <li>教育评估与质量保障</li>
-                    <li>国际教育与交流</li>
-                    <li>教育公平与社会正义</li>
-                    <li>专业学位教育</li>
+                    <li><span class="tc">教育技術與信息化</span><span class="sc">教育技术与信息化</span><span class="en">EdTech & ICT</span></li>
+                    <li><span class="tc">在線教育與遠程學習</span><span class="sc">在线教育与远程学习</span><span class="en">Online & Distance Learning</span></li>
+                    <li><span class="tc">教師教育與發展</span><span class="sc">教师教育与发展</span><span class="en">Teacher Education</span></li>
+                    <li><span class="tc">學生發展與支持</span><span class="sc">学生发展与支持</span><span class="en">Student Development</span></li>
+                    <li><span class="tc">教育評估與質量保障</span><span class="sc">教育评估与质量保障</span><span class="en">Assessment & QA</span></li>
+                    <li><span class="tc">國際教育與交流</span><span class="sc">国际教育与交流</span><span class="en">International Education</span></li>
+                    <li><span class="tc">教育公平與社會正義</span><span class="sc">教育公平与社会正义</span><span class="en">Equity & Social Justice</span></li>
+                    <li><span class="tc">專業學位教育</span><span class="sc">专业学位教育</span><span class="en">Professional Degrees</span></li>
                 </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- 关于部分 -->
-    <section class="about-section">
-        <div class="container">
-            <div class="about-grid">
-                <div>
-                    <h2>关于高图出版管理</h2>
-                    <p>高图出版管理（HEPM）作为香港高等教育研究所旗下的国际学术出版组织，以「联结全球教育智慧 驱动学术实践革新」为使命，深耕高等教育领域的跨学科研究与实践。</p>
-                    <p>我们整合教育理论与实践、教学创新、学术管理等交叉领域研究，打破地域与学科壁垒，推动理论成果向实践转化，服务全球教育可持续发展。</p>
-                </div>
-                <div>
-                    <h2>我们的特色</h2>
-                    <p>双语传播：构建中英双语学术传播矩阵，助力教育研究成果突破语言壁垒走向世界，促进跨文化教育思想对话。</p>
-                    <p>快审开放：采用"双盲快审+开放获取"模式，以透明高效的审稿流程、普惠性出版费用机制提供优质服务。</p>
-                    <p>学术社区：打造包容多元的学术社区，汇聚全球学者，鼓励并扶持具有学术潜力的新锐学者。</p>
-                    <p>实践转化：通过学术期刊、ECR研究网络、学术活动，将研究成果转化为解决教育现实问题的策略。</p>
-                </div>
             </div>
         </div>
     </section>
@@ -544,105 +331,86 @@
         <div class="container">
             <div class="footer-content">
                 <div>
-                    <h4>产品与服务</h4>
+                    <h4><span class="tc">產品與服務</span><span class="sc">产品与服务</span><span class="en">Products & Services</span></h4>
                     <ul>
-                        <li><a href="#">期刊与图书</a></li>
-                        <li><a href="#">数据库与工具</a></li>
-                        <li><a href="#">开放获取</a></li>
-                        <li><a href="#">作者服务</a></li>
+                        <li><a href="#"><span class="tc">期刊與圖書</span><span class="sc">期刊与图书</span><span class="en">Journals & Books</span></a></li>
+                        <li><a href="#"><span class="tc">數據庫與工具</span><span class="sc">数据库与工具</span><span class="en">Databases & Tools</span></a></li>
+                        <li><a href="#"><span class="tc">開放獲取</span><span class="sc">开放获取</span><span class="en">Open Access</span></a></li>
+                        <li><a href="#"><span class="tc">作者服務</span><span class="sc">作者服务</span><span class="en">Author Services</span></a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>研究人员</h4>
+                    <h4><span class="tc">研究人員</span><span class="sc">研究人员</span><span class="en">Researchers</span></h4>
                     <ul>
-                        <li><a href="#">发表支持</a></li>
-                        <li><a href="#">研究工具</a></li>
-                        <li><a href="#">学术资源</a></li>
-                        <li><a href="#">培训课程</a></li>
+                        <li><a href="#"><span class="tc">發表支持</span><span class="sc">发表支持</span><span class="en">Publishing Support</span></a></li>
+                        <li><a href="#"><span class="tc">研究工具</span><span class="sc">研究工具</span><span class="en">Research Tools</span></a></li>
+                        <li><a href="#"><span class="tc">學術資源</span><span class="sc">学术资源</span><span class="en">Academic Resources</span></a></li>
+                        <li><a href="#"><span class="tc">培訓課程</span><span class="sc">培训课程</span><span class="en">Training</span></a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>机构</h4>
+                    <h4><span class="tc">機構</span><span class="sc">机构</span><span class="en">Institutions</span></h4>
                     <ul>
-                        <li><a href="#">图书馆</a></li>
-                        <li><a href="#">政府机构</a></li>
-                        <li><a href="#">企业</a></li>
-                        <li><a href="#">合作伙伴</a></li>
+                        <li><a href="#"><span class="tc">圖書館</span><span class="sc">图书馆</span><span class="en">Libraries</span></a></li>
+                        <li><a href="#"><span class="tc">政府機構</span><span class="sc">政府机构</span><span class="en">Government</span></a></li>
+                        <li><a href="#"><span class="tc">企業</span><span class="sc">企业</span><span class="en">Enterprises</span></a></li>
+                        <li><a href="#"><span class="tc">合作夥伴</span><span class="sc">合作伙伴</span><span class="en">Partners</span></a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>关于我们</h4>
+                    <h4><span class="tc">關於我們</span><span class="sc">关于我们</span><span class="en">About</span></h4>
                     <ul>
-                        <li><a href="#">公司简介</a></li>
-                        <li><a href="#">新闻中心</a></li>
-                        <li><a href="#">职业发展</a></li>
-                        <li><a href="#">联系我们</a></li>
+                        <li><a href="#"><span class="tc">公司簡介</span><span class="sc">公司简介</span><span class="en">Company</span></a></li>
+                        <li><a href="#"><span class="tc">新聞中心</span><span class="sc">新闻中心</span><span class="en">News</span></a></li>
+                        <li><a href="#"><span class="tc">職業發展</span><span class="sc">职业发展</span><span class="en">Careers</span></a></li>
+                        <li><a href="#"><span class="tc">聯繫我們</span><span class="sc">联系我们</span><span class="en">Contact</span></a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 Higher Education Publishing Management (HEPM). 版权所有。</p>
+                <p>© 2024 Higher Education Publishing Management (HEPM). All rights reserved.</p>
             </div>
         </div>
     </footer>
+
     <script>
-        // 三语言切换功能
-        function initLanguageSwitch() {
-            const tcBtn = document.getElementById('lang-tc-btn');
-            const scBtn = document.getElementById('lang-sc-btn');
-            const enBtn = document.getElementById('lang-en-btn');
-            const body = document.body;
+        // Language toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const bodyEl = document.body;
+            const btnTC = document.getElementById('lang-tc');
+            const btnSC = document.getElementById('lang-sc');
+            const btnEN = document.getElementById('lang-en');
             
-            // 检测用户地理位置并设置默认语言
-            function detectLanguage() {
-                if (navigator.language) {
-                    const lang = navigator.language.toLowerCase();
-                    if (lang.includes('zh-cn') || lang.includes('zh-sg')) {
-                        return 'sc'; // 简体中文
-                    } else if (lang.includes('zh')) {
-                        return 'tc'; // 繁体中文
-                    } else {
-                        return 'en'; // 英文
-                    }
-                }
-                return 'tc'; // 默认繁体中文
-            }
-            
-            // 设置语言
-            function setLanguage(lang) {
-                body.className = body.className.replace(/lang-\w+/, '') + ' lang-' + lang;
-                
-                // 更新按钮状态
-                [tcBtn, scBtn, enBtn].forEach(btn => btn.classList.remove('active'));
-                document.getElementById('lang-' + lang + '-btn').classList.add('active');
-                
-                // 保存到localStorage
-                localStorage.setItem('preferredLanguage', lang);
-                
-                // 更新搜索框placeholder
-                const searchInput = document.getElementById('searchInput');
-                if (searchInput) {
-                    const placeholders = {
-                        'tc': '搜尋...',
-                        'sc': '搜索...',
-                        'en': 'Search...'
-                    };
-                    searchInput.placeholder = placeholders[lang];
+            function setLang(lang) {
+                if (lang === 'en') {
+                    bodyEl.classList.remove('lang-tc', 'lang-sc');
+                    bodyEl.classList.add('lang-en');
+                    btnEN.classList.add('active');
+                    btnTC.classList.remove('active');
+                    btnSC.classList.remove('active');
+                } else if (lang === 'sc') {
+                    bodyEl.classList.remove('lang-tc', 'lang-en');
+                    bodyEl.classList.add('lang-sc');
+                    btnSC.classList.add('active');
+                    btnTC.classList.remove('active');
+                    btnEN.classList.remove('active');
+                } else { // tc
+                    bodyEl.classList.remove('lang-en', 'lang-sc');
+                    bodyEl.classList.add('lang-tc');
+                    btnTC.classList.add('active');
+                    btnSC.classList.remove('active');
+                    btnEN.classList.remove('active');
                 }
             }
             
-            // 初始化语言
-            const savedLang = localStorage.getItem('preferredLanguage') || detectLanguage();
-            setLanguage(savedLang);
+            // 绑定事件监听器
+            if (btnTC) btnTC.addEventListener('click', () => setLang('tc'));
+            if (btnSC) btnSC.addEventListener('click', () => setLang('sc'));
+            if (btnEN) btnEN.addEventListener('click', () => setLang('en'));
             
-            // 绑定点击事件
-            tcBtn.addEventListener('click', () => setLanguage('tc'));
-            scBtn.addEventListener('click', () => setLanguage('sc'));
-            enBtn.addEventListener('click', () => setLanguage('en'));
-        }
-        
-        // 页面加载完成后初始化
-        document.addEventListener('DOMContentLoaded', initLanguageSwitch);
+            // 调试信息
+            console.log('Language buttons found:', { btnTC, btnSC, btnEN });
+        });
     </script>
 </body>
 </html>
